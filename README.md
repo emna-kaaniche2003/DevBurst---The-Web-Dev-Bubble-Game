@@ -10,6 +10,10 @@ Voici une démonstration vidéo des fonctionnalités principales et du gameplay 
 
 
 
+https://github.com/user-attachments/assets/81836e2c-3d59-42ba-8d3c-cf92cd24010b
+
+
+
 ---
 
 ## 🎮 Concept du Jeu & Niveaux
@@ -32,9 +36,14 @@ Le jeu intègre une barre de progression de chargement de type "Terminal/VS Code
 Le projet est conçu selon une architecture modulaire et découplée (sans framework), facilitant la maintenance et l'évolution du moteur de jeu :
 
 ```
-
+DevBurst/
 ├── index.html                  # Structure HTML5 principale et conteneurs des écrans/modales
-├── css/                        # Feuilles de styles structurées (base, layout, components, game, theme-dark)
+├── css/                        # Feuilles de styles structurées et thèmes du jeu
+│   ├── base.css                # Réinitialisations et styles de base
+│   ├── components.css          # Styles des boutons, modales et éléments d'interface
+│   ├── game.css                # Design du canvas de jeu, des bulles et des animations de score
+│   ├── layout.css              # Organisation spatiale des écrans (Grids, Flexbox)
+│   └── theme-dark.css          # Design inspiré de l'éditeur de code VS Code (Mode Sombre)
 ├── js/
 │   ├── main.js                 # Point d'entrée principal et orchestration de la logique globale
 │   ├── state.js                # Gestion centralisée de l'état du jeu (scores, niveaux, mute/unmute)
@@ -44,9 +53,11 @@ Le projet est conçu selon une architecture modulaire et découplée (sans frame
 │   ├── collision.js            # Algorithmes de détection des clics dans les bulles et effets de particules
 │   ├── timer.js                # Compte à rebours autonome avec alertes audio "Tic-Tac" (phases critiques)
 │   └── data/
-│       ├── levels.js           # Configuration structurée des questions (vrais/faux patterns)
+│       ├── levels.js           # Configuration structurée des questions (vrais/faux objets et patterns)
 │       └── explanations.js     # Contenu pédagogique textuel affiché au début de chaque niveau
-└── assets/                     # Ressources médias (Sound effects : pop, correct, wrong, clock, background loop)
+└── assets/                     # Ressources médias
+├── images/                 # Icônes et placeholders graphiques
+└── sounds/                 # Effets sonores (bubble-pop.mp3, correct.mp3, wrong.mp3, clock.mp3, background-music.mp3)
 ```
 ---
 
