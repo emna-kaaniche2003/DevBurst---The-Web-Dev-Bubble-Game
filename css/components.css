@@ -1,0 +1,254 @@
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-primary {
+    background-color: var(--accent-blue);
+    color: var(--text-primary);
+}
+
+.btn-primary:hover {
+    background-color: #005A9E;
+    box-shadow: 0 0 20px rgba(0, 122, 204, 0.5);
+}
+
+.btn-secondary {
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+.btn-secondary:hover {
+    background-color: #404040;
+    color: var(--text-primary);
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--bg-tertiary);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--bg-tertiary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    color: var(--text-primary);
+    font-size: var(--font-size-large);
+    margin: 0;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-fast);
+}
+
+.close-modal-btn:hover {
+    color: var(--accent-red);
+}
+
+.modal-body {
+    padding: var(--spacing-lg);
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.modal-body h3 {
+    color: var(--accent-blue);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+}
+
+.modal-body p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.modal-footer {
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--bg-tertiary);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+}
+
+/* Info Box (Level Introduction) */
+.info-box {
+    border-left: 4px solid var(--accent-blue);
+}
+
+/* Result Box */
+.result-box {
+    border-left: 4px solid var(--accent-green);
+}
+
+.result-stats {
+    font-size: 18px;
+    line-height: 2;
+}
+
+.result-stats p {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.result-stats span {
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+/* Level Complete Box */
+.level-complete-box {
+    border-left: 4px solid var(--accent-yellow);
+}
+
+.console-output {
+    background-color: var(--bg-primary);
+    padding: var(--spacing-lg);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+}
+
+.console-line {
+    color: var(--accent-green);
+    font-size: 14px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.console-line span {
+    color: var(--accent-yellow);
+    font-weight: bold;
+}
+
+/* Game Complete Box */
+.game-complete-box {
+    border-left: 4px solid var(--accent-green);
+    text-align: center;
+}
+
+.congrats-text {
+    font-size: 18px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.completion-list {
+    background-color: var(--bg-primary);
+    padding: var(--spacing-lg);
+    border-radius: 4px;
+    margin: var(--spacing-lg) 0;
+}
+
+.completion-list p {
+    font-size: 16px;
+    color: var(--accent-green);
+    margin-bottom: var(--spacing-sm);
+}
+
+.final-score {
+    font-size: 24px;
+    margin: var(--spacing-lg) 0;
+}
+
+.final-score span {
+    color: var(--accent-yellow);
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.motivational-text {
+    font-style: italic;
+    color: var(--text-tertiary);
+}
+
+/* components.css ou game.css */
+
+/* Style pour le bouton icône */
+.btn-icon {
+    background: none;
+    border: 1px solid var(--bg-tertiary);
+    color: var(--text-secondary);
+    padding: var(--spacing-sm);
+    border-radius: 50%;
+    line-height: 1; /* Pour centrer l'icône */
+    font-size: 18px; /* Taille de l'icône */
+    margin-right: 5px;
+}
+
+.btn-icon:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* Positionnement dans le HUD */
+.hud-item.sound-control {
+    margin-left: auto; /* Pousse le bouton vers la droite dans le HUD */
+}

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBurst - The Web Dev Bubble Game</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/theme-dark.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="screen active">
+        <div class="splash-content">
+            <div class="logo-container">
+                <div class="code-icon">&lt;/&gt;</div>
+                <h1 class="logo-text">DevBurst</h1>
+            </div>
+            <div class="terminal-loading">
+                <p class="loading-text">Loading assets...</p>
+                <p class="loading-text">Initializing VS Code theme...</p>
+                <p class="loading-text">Loading levels...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div id="main-menu" class="screen">
+        <aside class="sidebar">
+            <div class="sidebar-icon active">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/>
+                </svg>
+            </div>
+            <div class="sidebar-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </div>
+            <div class="sidebar-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+            </div>
+            <div class="sidebar-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 1v6m0 6v6m5.66-13.66L14 8.5m-4 7L6.34 19M23 12h-6m-6 0H1m18.66-5.66L15.5 10m-7 4l-3.16 3.16M23 12v0"/>
+                </svg>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="tab-bar">
+                <div class="tab active">
+                    <span class="tab-icon">⚡</span>
+                    <span>main.js</span>
+                </div>
+            </div>
+
+            <div class="editor-content">
+                <div class="code-welcome">
+                    <pre class="code-block">
+<span class="comment">// Welcome to DevBurst!</span>
+<span class="comment">// Ready to challenge your HTML, CSS and JavaScript skills?</span>
+
+<span class="keyword">function</span> <span class="function">startGame</span>() {
+    <span class="comment">// Click the button below to begin your journey</span>
+    <span class="variable">player</span>.<span class="function">levelUp</span>();
+}</pre>
+                </div>
+
+                <div class="menu-buttons">
+                    <button id="start-game-btn" class="btn btn-primary">
+                        <span>▶</span> Start Game
+                    </button>
+                    <button id="how-to-play-btn" class="btn btn-secondary">
+                        <span>?</span> How to Play
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Level Info Modal -->
+    <div id="level-info-modal" class="modal">
+        <div class="modal-content info-box">
+            <div class="modal-header">
+                <h2 id="level-info-title">📘 Niveau 1 : HTML</h2>
+            </div>
+            <div class="modal-body">
+                <p id="level-info-text"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="start-level-btn" class="btn btn-primary">Commencer le niveau</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <aside class="sidebar">
+            <div class="sidebar-icon">⚡</div>
+            <div class="sidebar-icon">📁</div>
+            <div class="sidebar-icon">🔍</div>
+            <div class="sidebar-icon">⚙️</div>
+        </aside>
+
+        <main class="game-main">
+            <div class="tab-bar">
+                <div class="tab active">
+                    <span id="level-file-name">level1.html</span>
+                </div>
+                <div class="level-badge" id="level-badge">HTML</div>
+                <button id="close-game-btn" class="close-btn">✕</button>
+            </div>
+
+            <div class="hud">
+                <div class="hud-item sound-control">
+                    <button id="toggle-sound-btn" class="btn btn-icon">
+                        <span id="sound-icon">🔊</span>
+                    </button>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Score:</span>
+                    <span id="score-value" class="hud-value">0</span>
+                </div>
+                <div class="hud-item center">
+                    <span class="hud-label">Time:</span>
+                    <span id="timer-value" class="hud-value">5s</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Question:</span>
+                    <span id="question-progress" class="hud-value">1 / 4</span>
+                </div>
+            </div>
+
+            <div id="game-canvas" class="game-canvas">
+                <h1 id="question-title" class="question-title">Select the correct HTML tags</h1>
+                <div id="bubbles-container" class="bubbles-container"></div>
+            </div>
+
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span>▶ TERMINAL</span>
+                </div>
+                <div class="terminal-content">
+                    <p id="terminal-tip" class="terminal-line">Tip: les balises HTML sont toujours entourées de &lt; &gt;</p>
+                    <span class="terminal-cursor">_</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="modal">
+        <div class="modal-content result-box">
+            <div class="modal-header">
+                <h2 id="result-title">Question terminée !</h2>
+            </div>
+            <div class="modal-body">
+                <div class="result-stats">
+                    <p>✓ Bonnes réponses : <span id="correct-count">0</span></p>
+                    <p>✗ Erreurs : <span id="error-count">0</span></p>
+                    <p>⭐ Score gagné : <span id="score-gained">+0</span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="next-question-btn" class="btn btn-primary">Question suivante</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Level Complete Modal -->
+    <div id="level-complete-modal" class="modal">
+        <div class="modal-content level-complete-box">
+            <div class="modal-header">
+                <h2>🎉 Niveau terminé !</h2>
+            </div>
+            <div class="modal-body">
+                <div class="console-output">
+                    <p class="console-line">&gt; <span id="level-name-complete">HTML</span> basics... validated.</p>
+                    <p class="console-line">&gt; Score total: <span id="level-total-score">0</span></p>
+                    <p class="console-line">&gt; Ready for the next challenge?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="next-level-btn" class="btn btn-primary">Niveau suivant</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Complete Modal -->
+    <div id="game-complete-modal" class="modal">
+        <div class="modal-content game-complete-box">
+            <div class="modal-header">
+                <h2>🎉 Félicitations !</h2>
+            </div>
+            <div class="modal-body">
+                <p class="congrats-text">Tu viens de compléter les 4 niveaux de DevBurst.</p>
+                <div class="completion-list">
+                    <p>✓ HTML... ✔</p>
+                    <p>✓ CSS... ✔</p>
+                    <p>✓ JavaScript... ✔</p>
+                    <p>✓ DOM & Events... ✔</p>
+                </div>
+                <p class="final-score">Ton score final : <span id="final-score-value">0</span></p>
+                <p class="motivational-text">Continue d'explorer, coder et éclater des connaissances !</p>
+            </div>
+            <div class="modal-footer">
+                <button id="replay-btn" class="btn btn-primary">Rejouer</button>
+                <button id="menu-btn" class="btn btn-secondary">Retour au menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div id="how-to-play-modal" class="modal">
+        <div class="modal-content info-box">
+            <div class="modal-header">
+                <h2>❓ Comment jouer</h2>
+                <button class="close-modal-btn">✕</button>
+            </div>
+            <div class="modal-body">
+                <h3>Règles du jeu</h3>
+                <p>• Clique sur les bulles contenant les bonnes réponses</p>
+                <p>• Évite les mauvaises réponses qui font perdre des points</p>
+                <p>• Chaque bonne réponse : +10 points</p>
+                <p>• Chaque mauvaise réponse : -5 points</p>
+                <p>• Tu as 10 secondes par question</p>
+                <p>• 4 questions par niveau</p>
+                <p>• 4 niveaux au total : HTML, CSS, JavaScript, DOM & Events</p>
+                <h3>Astuces</h3>
+                <p>• Lis les tips dans le terminal en bas</p>
+                <p>• Les bulles plus grandes sont souvent plus importantes</p>
+                <p>• Reste concentré sur le timer !</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary close-modal-btn">Compris !</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audio-pop" src="assets/sounds/bubble-pop.mp3" preload="auto"></audio>
+    <audio id="audio-correct" src="assets/sounds/correct.mp3" preload="auto"></audio>
+    <audio id="audio-wrong" src="assets/sounds/wrong.mp3" preload="auto"></audio>
+    
+   <audio id="audio-tick" src="assets/sounds/clock.mp3" preload="auto"></audio>
+   
+    <audio id="audio-background" src="assets/sounds/background-music.mp3" preload="auto" loop></audio>
+   
+    <!-- JavaScript Files -->
+    <script src="js/utils.js"></script>
+    <script src="js/data/explanations.js"></script>
+    <script src="js/data/levels.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/engine/timer.js"></script>
+    <script src="js/engine/collision.js"></script>
+    <script src="js/engine/bubbleEngine.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

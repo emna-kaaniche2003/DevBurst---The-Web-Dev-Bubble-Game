@@ -1,0 +1,246 @@
+/* Game Specific Styles */
+
+/* Bubbles Container */
+.bubbles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Bubble */
+.bubble {
+    position: absolute;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-radius: 50px;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: all var(--transition-fast);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    user-select: none;
+    animation: float 3s ease-in-out infinite;
+    z-index: 10;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+.bubble:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* Bubble Colors by Level */
+.bubble.html {
+    background: linear-gradient(135deg, #2D5A8C 0%, #1E4166 100%);
+    box-shadow: 0 4px 15px rgba(45, 90, 140, 0.4);
+}
+
+.bubble.css {
+    background: linear-gradient(135deg, #2D8C5A 0%, #1E6641 100%);
+    box-shadow: 0 4px 15px rgba(45, 140, 90, 0.4);
+}
+
+.bubble.js {
+    background: linear-gradient(135deg, #8C7A2D 0%, #66581E 100%);
+    box-shadow: 0 4px 15px rgba(140, 122, 45, 0.4);
+}
+
+.bubble.dom {
+    background: linear-gradient(135deg, #7A2D8C 0%, #581E66 100%);
+    box-shadow: 0 4px 15px rgba(122, 45, 140, 0.4);
+}
+
+/* Bubble Glow Effect */
+.bubble.html::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(0, 122, 204, 0.3), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    z-index: -1;
+}
+
+.bubble.css::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(78, 201, 176, 0.3), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    z-index: -1;
+}
+
+.bubble.js::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(255, 200, 0, 0.3), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    z-index: -1;
+}
+
+.bubble.dom::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    z-index: -1;
+}
+
+.bubble:hover::before {
+    opacity: 1;
+}
+
+/* Bubble Pop Animation */
+@keyframes popCorrect {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes popWrong {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: scale(0.9) rotate(-5deg);
+    }
+    50% {
+        transform: scale(0.9) rotate(5deg);
+    }
+    75% {
+        transform: scale(0.9) rotate(-5deg);
+    }
+    100% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+.bubble.pop-correct {
+    animation: popCorrect 0.4s ease forwards;
+}
+
+.bubble.pop-wrong {
+    animation: popWrong 0.4s ease forwards;
+}
+
+/* Particle Effects */
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleBurst 0.6s ease-out forwards;
+}
+
+.particle.correct {
+    background-color: var(--accent-green);
+    box-shadow: 0 0 10px var(--accent-green);
+}
+
+.particle.wrong {
+    background-color: var(--accent-red);
+    box-shadow: 0 0 10px var(--accent-red);
+}
+
+@keyframes particleBurst {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Score Popup */
+.score-popup {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    pointer-events: none;
+    animation: scoreFloat 1s ease-out forwards;
+    z-index: 100;
+}
+
+.score-popup.positive {
+    color: var(--accent-green);
+    text-shadow: 0 0 10px var(--accent-green);
+}
+
+.score-popup.negative {
+    color: var(--accent-red);
+    text-shadow: 0 0 10px var(--accent-red);
+}
+
+@keyframes scoreFloat {
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-30px) scale(1);
+    }
+    100% {
+        transform: translateY(-60px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Timer Warning */
+.hud-value.timer-warning {
+    color: var(--accent-red);
+    animation: pulse 0.5s ease-in-out infinite;
+}
+
+/* Score Update Animation */
+.hud-value.score-update {
+    animation: scoreUpdate 0.3s ease;
+}
+
+@keyframes scoreUpdate {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+        color: var(--accent-yellow);
+    }
+}
