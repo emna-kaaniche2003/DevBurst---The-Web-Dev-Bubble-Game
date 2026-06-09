@@ -31,6 +31,8 @@ Le jeu intègre une barre de progression de chargement de type "Terminal/VS Code
 
 Le projet est conçu selon une architecture modulaire et découplée (sans framework), facilitant la maintenance et l'évolution du moteur de jeu :
 
+```
+
 ├── index.html                  # Structure HTML5 principale et conteneurs des écrans/modales
 ├── css/                        # Feuilles de styles structurées (base, layout, components, game, theme-dark)
 ├── js/
@@ -45,7 +47,7 @@ Le projet est conçu selon une architecture modulaire et découplée (sans frame
 │       ├── levels.js           # Configuration structurée des questions (vrais/faux patterns)
 │       └── explanations.js     # Contenu pédagogique textuel affiché au début de chaque niveau
 └── assets/                     # Ressources médias (Sound effects : pop, correct, wrong, clock, background loop)
-
+```
 ---
 
 ## 🛠️ Fonctionnalités Techniques Clés
