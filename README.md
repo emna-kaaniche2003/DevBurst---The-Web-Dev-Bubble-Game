@@ -80,5 +80,5 @@ Ce projet est purement *Front-End* (Client-Side). Aucun serveur ou base de donn�
 ### Étapes de lancement
 1. **Cloner le dépôt sur votre machine :**
    ```bash
-   git clone [https://github.com/emna-kaaniche2003/DevBurst---The-Web-Dev-Bubble-Game.git]([https://github.com/maryem37/DevBurst.git](https://github.com/emna-kaaniche2003/DevBurst---The-Web-Dev-Bubble-Game.git))
+   git clone https://github.com/emna-kaaniche2003/DevBurst---The-Web-Dev-Bubble-Game.git
    cd DevBurst
